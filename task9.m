@@ -1,22 +1,23 @@
 clc; clearvars; close all;
-original = rgb2gray(imread("car.jpg"));
-imGauss = imnoise(original, "gaussian");
+original = rgb2gray(imread("spiderman.png"));
 figure(); imshow(original); title("Original");
+
+imGauss = imnoise(original, "gaussian");
 figure(); imshow(imGauss); title("Gaussian");
 
-Mediana = medfilt2(imGauss, [3,3]);
+Mediana = medfilt2(imGauss, [5,5]);
 figure(); imshow(Mediana, []); title("Mediana");
 
 imGauss = double(imGauss);
-k = ones(3); k = k/9;
+k = ones(5); k = k/25;
 Promedio = imfilter(imGauss, k);
 figure(); imshow(Promedio, []); title("Promedio");
 
-Gaussian = imgaussfilt(imGauss, 5, 'FilterSize', 9);
+Gaussian = imgaussfilt(imGauss, 2, 'FilterSize', 9);
 figure(); imshow(Gaussian, []); title("Gauss");
 %%
 clc; clearvars; close all;
-original = rgb2gray(imread("car.jpg"));
+original = rgb2gray(imread("spiderman.png"));
 imSP = imnoise(original, "salt & pepper");
 figure(); imshow(original); title("Original");
 figure(); imshow(imSP); title("Salt and Pepper");
@@ -33,7 +34,7 @@ Gaussian = imgaussfilt(imSP, 2, 'FilterSize', 3);
 figure(); imshow(Gaussian, []); title("Gauss");
 %%
 clc; clearvars; close all;
-original = rgb2gray(imread("car.jpg"));
+original = rgb2gray(imread("spiderman.png"));
 imPoi = imnoise(original, "poisson");
 figure(); imshow(original); title("Original");
 figure(); imshow(imPoi); title("Poisson");
@@ -50,18 +51,18 @@ Gaussian = imgaussfilt(imPoi, 2, 'FilterSize', 3);
 figure(); imshow(Gaussian, []); title("Gauss");
 %%
 clc; clearvars; close all;
-original = rgb2gray(imread("car.jpg"));
+original = rgb2gray(imread("spiderman.png"));
 imSpk = imnoise(original, "speckle");
 figure(); imshow(original); title("Original");
 figure(); imshow(imSpk); title("Multiplicativo");
 
-Mediana = medfilt2(imSpk, [3,3]);
+Mediana = medfilt2(imSpk, [5,5]);
 figure(); imshow(Mediana, []); title("Mediana");
 
 imSpk = double(imSpk);
-k = ones(3); k = k/9;
+k = ones(5); k = k/25;
 Promedio = imfilter(imSpk, k);
 figure(); imshow(Promedio, []); title("Promedio");
 
-Gaussian = imgaussfilt(imSpk, 2, 'FilterSize', 3);
+Gaussian = imgaussfilt(imSpk, 3, 'FilterSize', 5);
 figure(); imshow(Gaussian, []); title("Gauss");
