@@ -1,0 +1,34 @@
+%%
+clc;
+clearvars;
+close all;
+%% 
+original = imread("sarayleal.jpeg");
+original = (rgb2gray(original));
+
+imGauss = imnoise(original, "gaussian");
+imSP = imnoise(original, "salt & pepper");
+imPoi = imnoise(original, "poisson");
+imSpk = imnoise(original, "speckle");
+%uno(original);
+uno(imGauss);
+uno(imSP);
+uno(imPoi);
+uno(imSpk);
+figure("Name","Sobel"); 
+function uno = uno(img);
+    sobel1 = edge(img, 'sobel');
+    %imshow(sobel1);
+    for i = 1:4
+        if i == 1
+            nombre = "Gaussiano";
+        elseif i == 2
+            nombre = "Salt&Pepper";
+        elseif i == 3
+            nombre = "Poisson";
+        elseif i == 4
+            nombre = "Speckle";
+        end
+        subplot(2,2,i); imshow(img); title(nombre);
+    end
+end
